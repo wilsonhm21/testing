@@ -1,0 +1,59 @@
+
+
+
+<div class="table-container">
+  <p class="rojo">
+    Tabla de Proveedor
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <input type="text" (keyup)="buscar($event)">
+    
+  </div>
+
+  <button id="nuevo" routerLink="/app/proveedor/nuevo" >Nuevo +</button>
+  
+  <div class="separador">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ruc</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Correo</th>
+            <th>FechaCreacion</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+
+        <tbody>
+          <tr *ngFor="let proveedor of filtroProveedor">
+            <td>{{ proveedor.idProveedor }}</td>
+            <td>{{ proveedor.ruc }}</td>
+            <td >{{ proveedor.nombre }}</td>
+            <td>{{ proveedor.direccion }}</td>
+            <td>{{ proveedor.correo }}</td>
+            <td>{{ proveedor.fechaCreacion }}</td>
+            <td class="eliminar">
+              <button (click)="eliminarPorId(proveedor.idProveedor)">❌</button>
+              <button class="editar" (click)="toggleModoEdicion(proveedor)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOcultoPro }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcutoho()">❌</span>
+      <app-editar-proveedor class="editar" [proveedorEditar]="proveedorEditar" (modoOcultopro)="editarModoOcutoho()"></app-editar-proveedor>
+      
+    </div>
+  </div>
+
+</div>

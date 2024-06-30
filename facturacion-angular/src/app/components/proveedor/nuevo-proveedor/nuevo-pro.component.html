@@ -1,0 +1,46 @@
+<div class="formulario">
+  <p class="nota">Registro de proveedores: recuerde ingresar todos los campos</p>
+  <p class="datos">Datos:</p>
+  <form [formGroup]="formulariopro" (ngSubmit)="onSubmitpro()">
+
+    <div>
+      <input [maxLength]="15" pattern="[a-zA-Z0-9]*" type="text" formControlName="ruc" placeholder="RUC" (keyup)="validarCodigo($event)">
+      <span *ngIf="formulariopro.get('ruc')?.hasError('pattern') && formulariopro.get('ruc')?.touched">
+        Por favor, ingrese solo números y letras.
+      </span>
+      <span *ngIf="formulariopro.get('ruc')?.hasError('maxLength') && formulariopro.get('ruc')?.touched">
+        El RUC debe tener máximo 15 caracteres.
+      </span>
+      <span *ngIf="existe">El proveedor ya existe</span>
+    </div>
+
+    <div>
+      <input type="text" formControlName="nombre" placeholder="Nombre">
+      <span *ngIf="formulariopro.get('nombre')?.hasError('required') && formulariopro.get('nombre')?.touched">
+        Por favor, ingrese el nombre.
+      </span>
+      <span *ngIf="formulariopro.get('nombre')?.hasError('soloTexto') && formulariopro.get('nombre')?.touched">
+        Por favor, ingrese solo texto.
+      </span>
+    </div>
+
+    <div>
+      <input type="text" formControlName="direccion" placeholder="Dirección">
+      <span *ngIf="formulariopro.get('direccion')?.hasError('required') && formulariopro.get('direccion')?.touched">
+        Por favor, ingrese la dirección.
+      </span>
+    </div>
+
+    <div>
+      <input type="email" formControlName="correo" placeholder="Correo">
+      <span *ngIf="formulariopro.get('correo')?.hasError('required') && formulariopro.get('correo')?.touched">
+        Por favor, ingrese el correo.
+      </span>
+      <span *ngIf="formulariopro.get('correo')?.hasError('validarCorreo') && formulariopro.get('correo')?.touched">
+        Por favor, ingrese un correo válido.
+      </span>
+    </div>
+
+    <button type="submit">Guardar Datos</button>
+  </form>
+</div>
