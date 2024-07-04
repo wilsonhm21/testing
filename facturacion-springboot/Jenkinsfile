@@ -25,7 +25,7 @@ pipeline {
             steps {
                 timeout(time: 2, unit: 'MINUTES'){
                      //Se cambia <test> por <install> para que se genere el reporte de jacoco
-                    sh "mvn clean isntall -f facturacion-springboot/pom.xml"
+                    sh "mvn clean install -f facturacion-springboot/pom.xml"
                 }
             }
         }
