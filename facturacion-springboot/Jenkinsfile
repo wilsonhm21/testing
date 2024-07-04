@@ -21,7 +21,16 @@ pipeline {
                 }
             }
         }
-         stage('Quality gate') {
+        
+                stage('Test') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES'){
+                     //Se cambia <test> por <install> para que se genere el reporte de jacoco
+                    sh "mvn clean install -f facturacion-springboot/pom.xml"
+                }
+            }
+        }
+        stage('Quality gate') {
             steps {
 
                 sleep(10) //seconds
@@ -41,15 +50,6 @@ pipeline {
                 }
             }
         }
-                stage('Test') {
-            steps {
-                timeout(time: 2, unit: 'MINUTES'){
-                     //Se cambia <test> por <install> para que se genere el reporte de jacoco
-                    sh "mvn clean install -f facturacion-springboot/pom.xml"
-                }
-            }
-        }
-       
         stage('Deploy') {
             steps {
                 echo "mvn spring-boot:run -f facturacion-springboot/pom.xml"
