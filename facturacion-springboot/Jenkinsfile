@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 timeout(time: 2, unit: 'MINUTES'){
-                    sh "mvn -DskipTests clean package -f facturacion-sp.ringboot/pom.xml"
+                    sh "mvn -DskipTests clean package -f facturacion-springboot/pom.xml"
                 }
             }
         }
