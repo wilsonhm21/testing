@@ -1,4 +1,4 @@
-package com.facturacion.TestUnitarios.TestClientes;
+package com.facturacion.TestUnitarios.TestCliente;
 
 import com.facturacion.entity.Cliente;
 import com.facturacion.repository.ClienteRepository;
